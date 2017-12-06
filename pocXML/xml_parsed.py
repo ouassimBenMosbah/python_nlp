@@ -1,8 +1,10 @@
 from lxml import etree
 from collections import Counter
+import os
 
 # Name of the file containing the messages
-fname = "../sms.xml"
+dir = os.path.dirname(__file__)
+fname = os.path.join(dir, os.pardir, "sms.xml")
 
 tree = etree.parse(fname)
 
