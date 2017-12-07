@@ -1,10 +1,10 @@
-from lxml import etree
+""" Get all the messages from the XML file """
 from collections import Counter
 import os
+from lxml import etree
 
 # Name of the file containing the messages
-dir = os.path.dirname(__file__)
-fname = os.path.join(dir, os.pardir, "sms.xml")
+fname = os.path.join(os.path.dirname(__file__), os.pardir, "sms.xml")
 
 tree = etree.parse(fname)
 

@@ -377,3 +377,5 @@ exclude-protected=_asdict,_fields,_replace,_source,_make
 overgeneral-exceptions=Exception
 
 disable=invalid-name
+
+extension-pkg-whitelist=lxml
