@@ -1,4 +1,4 @@
-ab1to
+sms_dico="""ab1to
 akro
 HT
 a2m1
@@ -21,4 +21,4 @@ Ojourd'8
 a12c4
 asap
 avan
-avanC
+avanC"""
