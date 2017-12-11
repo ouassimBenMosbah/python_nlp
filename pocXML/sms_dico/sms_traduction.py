@@ -1,4 +1,4 @@
-A bientôt 
+sms_dico_trad = """A bientôt 
 Accro 
 Acheter 
 A demain 
@@ -21,4 +21,4 @@ Aujourd'hui
 A un de ces quatre 
 Aussi vite que possible 
 Avant 
-Avancer
+Avancer"""
