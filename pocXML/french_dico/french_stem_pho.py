@@ -1,4 +1,4 @@
-'a
+french_stem_pho = """'a
 ab'Es
 abEsm'A~
 ab'Es
@@ -30672,4 +30672,4 @@ ot'i
 osj'O~
 ot'O~
 ot'Er
-ot'e
+ot'e"""

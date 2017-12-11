@@ -18,6 +18,10 @@ if __name__ == '__main__':
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
+    ##### Clean data #####
+    xml_parsed.sms_bodies = xml_parsed.clean_sms_phonetic(xml_parsed.sms_bodies)
+
+    
     ##### Filter #####
     start = start2 = 0
     ############################################################
