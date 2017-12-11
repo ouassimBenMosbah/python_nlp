@@ -1,6 +1,7 @@
 """ Get all the messages from the XML file """
 from collections import Counter
 import os
+from random import randrange
 from subprocess import check_output
 from nltk.tokenize import word_tokenize
 from lxml import etree
@@ -28,11 +29,14 @@ for french_pho_word, french_word in zip(french_dico.french_pho.french_pho.split(
 
 def clean_sms_phonetic(list_sms):
     clean_sms = []
-    for sms in list_sms:
+    random_index = randrange(0,len(list_sms))
+    for sms in list_sms[random_index:random_index+1]:
         words = word_tokenize(sms, language='french')
+        print(words)
         for word in words:
-            word_pho = check_output(['espeak', '-v', 'fr', '-x', '-q', word])
-            print(word_pho.decode('utf8'))
+            word_pho = check_output(['espeak', '-v', 'fr', '-x', '-q', word]).decode('utf8').strip()
+            if word_pho in dict_pho_fr:
+                print(dict_pho_fr[word_pho])
         break
     return list_sms
 
