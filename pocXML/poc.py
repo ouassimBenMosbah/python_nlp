@@ -4,6 +4,7 @@ import time
 import sys
 import regExps
 import xml_parsed
+import poc_text_standardization
 
 # Decode sms smileys and so on ...
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
@@ -19,7 +20,7 @@ if __name__ == '__main__':
     print("#####################################")
 
     ##### Clean data #####
-    xml_parsed.sms_bodies = xml_parsed.clean_sms_phonetic(xml_parsed.sms_bodies)
+    xml_parsed.sms_bodies = poc_text_standardization.clean_sms_phonetic(xml_parsed.sms_bodies)
 
     
     ##### Filter #####
