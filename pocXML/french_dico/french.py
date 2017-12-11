@@ -1,4 +1,4 @@
-a
+french ="""a
 à
 abaissa
 abaissaient
@@ -139716,4 +139716,4 @@ zouaves
 zozoter
 zyeuter
 zygomatique
-zygomatiques
+zygomatiques"""

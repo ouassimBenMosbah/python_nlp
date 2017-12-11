@@ -1,5 +1,4 @@
-
-a
+french_stem = """a
 abaiss
 abaissement
 abaissent
@@ -30673,4 +30672,4 @@ zézai
 ôtion
 ôton
 ôtèrent
-ôté
+ôté"""

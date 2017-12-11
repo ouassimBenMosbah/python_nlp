@@ -1,4 +1,4 @@
-'a
+french_pho = """'a
 ,a_|aksA~gr'av_|
 abEs'a
 abEs'E
@@ -139716,4 +139716,4 @@ zu'av
 zozOt'e
 zjYt'e
 zigOmat'ik
-zigOmat'ik
+zigOmat'ik"""
