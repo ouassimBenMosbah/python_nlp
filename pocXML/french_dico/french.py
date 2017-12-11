@@ -65740,7 +65740,7 @@ gazouillement
 gazouillements
 gazouiller
 gazouillis
-geai
+j\'ai
 geais
 géant
 géante
