@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
     ##### Clean data #####
     xml_parsed.sms_bodies = text_preprocess.preprocess_sms(xml_parsed.sms_bodies)
+    print(xml_parsed.sms_bodies[:10])
 
     
     ##### Filter #####
