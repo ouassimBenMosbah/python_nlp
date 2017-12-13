@@ -6,9 +6,6 @@ import reg_exps
 import data_getter
 import text_preprocess
 
-# Decode sms smileys and so on ...
-non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-
 def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
                         list_sms_numbers = data_getter.sms_sent_to):
     ''' 
@@ -22,10 +19,8 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-def preprocess_data(list_sms_content = data_getter.sms_bodies):
-    ''' Clean data '''
-    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-    print(list_sms_content[-20:])
+def remove_spams(list_sms_content):
+    ''' Return the list of sms after removing the spams '''
     return list_sms_content
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
@@ -77,17 +72,21 @@ def get_list_regexp(list_sms_content):
     return (list_index, cpt_regexp)
 
 def main():
+    # Decode sms smileys and so on ...
+    non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
+
     print_general_stats()
 
-    list_sms_content = preprocess_data()
+    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
 
-    
-    ##### Filter #####
+    list_sms_content = remove_spams(list_sms_content)
+    print(list_sms_content[:10])
+
     start = start2 = 0
 
     ############################################################
     input_list_keywords = input('Would you like to search the keywords from "list.txt" ? (Y/N)')
-    if input_list_keywords and input_list_keywords[0].lower() in ['o', 'y']:
+    if input_list_keywords and input_list_keywords.lower() in ['o', 'y']:
         # Timestamp of the begining of the operations
         start = time.time()
         list_index_keywords, cpt_keyword = get_list_keywords(list_sms_content)
@@ -96,7 +95,7 @@ def main():
 
     ############################################################
     input_regexps = input('Would you like to search for money/dates/time/emails ? (Y/N)')
-    if input_list_keywords and input_regexps[0].lower() in ['o', 'y']:
+    if input_list_keywords and input_regexps.lower() in ['o', 'y']:
         start2 = time.time()
         list_index, cpt_regexp = get_list_regexp(list_sms_content)
         start2 = time.time() - start2
