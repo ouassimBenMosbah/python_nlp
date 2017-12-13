@@ -13,3 +13,6 @@ sms_bodies = [sms.text for sms in tree.xpath("/corpus/sms/cont")]
 
 # Split the whole document sms content by sms content
 sms_sent_to = Counter(sms.text for sms in tree.xpath("/corpus/sms/tel_id"))
+
+# list of element by either if it is a spam or a ham
+sms_spam_ham = [sms.text for sms in tree.xpath("/corpus/sms/spam")]

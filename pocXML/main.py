@@ -9,74 +9,100 @@ import text_preprocess
 # Decode sms smileys and so on ...
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 
-if __name__ == '__main__':
-    ##### General stats #####
-    x = 3
-    print("-", len(data_getter.sms_bodies), "messages has been sent")
+def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
+                        list_sms_numbers = data_getter.sms_sent_to):
+    ''' 
+        Print general stats. 
+        By default will display the 3 most called numbers 
+    '''
+    print("-", len(list_sms_content), "messages has been sent")
     print("#####################################")
-    print("The", x, "most called numbers are:")
-    for i, (num, number_call) in zip(range(1, x+1), data_getter.sms_sent_to.most_common(x)):
+    print("The", n, "most called numbers are:")
+    for i, (num, number_call) in zip(range(1, n+1), list_sms_numbers.most_common(n)):
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-    ##### Clean data #####
-    data_getter.sms_bodies = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-    print(data_getter.sms_bodies[-20:])
+def preprocess_data(list_sms_content = data_getter.sms_bodies):
+    ''' Clean data '''
+    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
+    print(list_sms_content[-20:])
+    return list_sms_content
+
+def get_list_keywords(list_sms_content, fname = 'list.txt'):
+    ''' Keep only the messages with one of the word of the fname given in parameter. '''
+
+    list_keyword = []
+    list_index = []
+    index = 0
+    cpt_keyword = 0
+
+    with open(fname) as f:
+        for line in f:
+            if line.strip():
+                list_keyword.append(line.strip())
+    for body in list_sms_content:
+        if body:
+            if any(x in body for x in list_keyword):
+                #print('-', body)
+                cpt_keyword += 1
+                list_index.append(index)
+        index += 1
+    return (list_index, cpt_keyword)
+
+def get_list_regexp(list_sms_content):
+    ''' Keep only the messages matching with the regexps '''
+    cpt_regexp = 0
+    list_index = []
+    index = -1
+    for body in list_sms_content:
+        index += 1
+        if body:
+            # If regexp match then print line and go to next sms/line
+            if re.search(reg_exps.regexp_money, body) or \
+                re.search(reg_exps.regexp_hours, body) or \
+                re.search(reg_exps.regexp_currency, body) or \
+                re.search(reg_exps.regexp_email, body):
+                #print('-', body.translate(non_bmp_map))
+                cpt_regexp += 1
+                list_index.append(index)
+                continue
+            # If any date match then we print the line and go to next sms/line
+            for date in reg_exps.dates:
+                regexp_dates = r"\b"+date+"\\b"
+                if re.search(regexp_dates, body):
+                    #print('-', body.translate(non_bmp_map))
+                    cpt_regexp += 1
+                    list_index.append(index)
+                    break
+    return (list_index, cpt_regexp)
+
+def main():
+    print_general_stats()
+
+    list_sms_content = preprocess_data()
 
     
     ##### Filter #####
     start = start2 = 0
-    ############################################################
-    # Keep only the messages with one of the word of the list.txt
-    input_list_keywords = input('Would you like to search the keywords from "list.txt" ? (Y/N)')
-    if input_list_keywords[0].lower() in ['o', 'y']:
-        list_keyword = []
-        cpt_keyword = 0
 
+    ############################################################
+    input_list_keywords = input('Would you like to search the keywords from "list.txt" ? (Y/N)')
+    if input_list_keywords and input_list_keywords[0].lower() in ['o', 'y']:
         # Timestamp of the begining of the operations
         start = time.time()
-
-        with open('list.txt') as f:
-            for line in f:
-                if line.strip():
-                    list_keyword.append(line.strip())
-        for body in data_getter.sms_bodies:
-            if body:
-                if any(x in body for x in list_keyword):
-                    #print('-', body)
-                    cpt_keyword += 1
+        list_index_keywords, cpt_keyword = get_list_keywords(list_sms_content)
         start = time.time() - start
     ############################################################
 
     ############################################################
-    # Keep only the messages matching with the regexps
-    # We'll check each sms
     input_regexps = input('Would you like to search for money/dates/time/emails ? (Y/N)')
-    if input_regexps[0].lower() in ['o', 'y']:
-        cpt_regexp = 0
+    if input_list_keywords and input_regexps[0].lower() in ['o', 'y']:
         start2 = time.time()
-        for body in data_getter.sms_bodies:
-            if body:
-                # If regexp match then print line and go to next sms/line
-                if re.search(reg_exps.regexp_money, body) or \
-                    re.search(reg_exps.regexp_hours, body) or \
-                    re.search(reg_exps.regexp_currency, body) or \
-                    re.search(reg_exps.regexp_email, body):
-                    #print('-', body.translate(non_bmp_map))
-                    cpt_regexp += 1
-                    continue
-                # If any date match then we print the line and go to next sms/line
-                for date in reg_exps.dates:
-                    regexp_dates = r"\b"+date+"\\b"
-                    if re.search(regexp_dates, body):
-                        #print('-', body.translate(non_bmp_map))
-                        cpt_regexp += 1
-                        break
+        list_index, cpt_regexp = get_list_regexp(list_sms_content)
         start2 = time.time() - start2
     ############################################################
 
-    # Timestamp of the end of the operations
-    end = time.time()
+    # Total execution time for the operations
     print("Execution time :", round(start + start2, 2), "seconds")
 
     try:
@@ -88,3 +114,7 @@ if __name__ == '__main__':
         print(cpt_regexp, "Regular expressions matched")
     except NameError as e:
         print("0 Regular expression found")
+
+
+if __name__ == '__main__':
+    main()
