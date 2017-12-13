@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     ##### Clean data #####
     data_getter.sms_bodies = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-    print(data_getter.sms_bodies[:10])
+    print(data_getter.sms_bodies[-20:])
 
     
     ##### Filter #####
