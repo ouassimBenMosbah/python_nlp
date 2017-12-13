@@ -25,7 +25,6 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
 def preprocess_data(list_sms_content = data_getter.sms_bodies):
     ''' Clean data '''
     list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-    print(list_sms_content[-20:])
     return list_sms_content
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
