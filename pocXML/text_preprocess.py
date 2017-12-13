@@ -37,6 +37,6 @@ def preprocess_sms(list_sms):
         except:
             sms_res = ''
         finally:
-            clean_sms.append(sms_res)
+            clean_sms.append(sms_res[:-1])
     print(round(time.time() - start, 2))
     return clean_sms
