@@ -19,14 +19,8 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-<<<<<<< HEAD
 def remove_spams(list_sms_content):
     ''' Return the list of sms after removing the spams '''
-=======
-def preprocess_data(list_sms_content = data_getter.sms_bodies):
-    ''' Clean data '''
-    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
->>>>>>> ed6837e5e5ed4bbca3ce6a9bc351ba24d8078ac9
     return list_sms_content
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
