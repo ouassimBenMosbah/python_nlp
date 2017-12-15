@@ -1,7 +1,6 @@
 """ A POC of a programm that will extract some suspicious messages """
 import re
 import time
-import sys
 import reg_exps
 import data_getter
 import text_preprocess
@@ -15,17 +14,12 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
     print("-", len(list_sms_content), "messages has been sent")
     print("#####################################")
     print("The", n, "most called numbers are:")
-    for i, (num, number_call) in zip(range(1, n+1), list_sms_numbers.most_common(n)):
+    for i, (num, number_call) in enumerate(list_sms_numbers.most_common(n), 1):
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-def remove_spams(list_sms_content):
-    ''' Return the list of sms after removing the spams '''
-    return list_sms_content
-
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
-
     list_keyword = []
     list_index = []
     index = 0
@@ -38,7 +32,6 @@ def get_list_keywords(list_sms_content, fname = 'list.txt'):
     for body in list_sms_content:
         if body:
             if any(x in body for x in list_keyword):
-                #print('-', body)
                 cpt_keyword += 1
                 list_index.append(index)
         index += 1
@@ -57,7 +50,6 @@ def get_list_regexp(list_sms_content):
                 re.search(reg_exps.regexp_hours, body) or \
                 re.search(reg_exps.regexp_currency, body) or \
                 re.search(reg_exps.regexp_email, body):
-                #print('-', body.translate(non_bmp_map))
                 cpt_regexp += 1
                 list_index.append(index)
                 continue
@@ -65,7 +57,6 @@ def get_list_regexp(list_sms_content):
             for date in reg_exps.dates:
                 regexp_dates = r"\b"+date+"\\b"
                 if re.search(regexp_dates, body):
-                    #print('-', body.translate(non_bmp_map))
                     cpt_regexp += 1
                     list_index.append(index)
                     break
@@ -78,9 +69,6 @@ def main():
     print_general_stats()
 
     list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-
-    list_sms_content = remove_spams(list_sms_content)
-    print(list_sms_content[:10])
 
     start = start2 = 0
 
