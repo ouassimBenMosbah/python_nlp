@@ -30,9 +30,6 @@ print("Execution time for REGEX :", round(start, 2), "seconds")
 
 tree = etree.parse(fname)
 
-
-
-
 # Split the whole document sms content by sms content
 sms_bodies = [sms.text for sms in tree.xpath("/corpus/sms/cont")]
 
