@@ -85,7 +85,7 @@ def main():
 
     # Tagging words
 
-    words_tagging(list_sms_content[:10])
+    # words_tagging(list_sms_content[:10])
 
     ############################################################
 

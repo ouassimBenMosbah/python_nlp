@@ -1,4 +1,6 @@
 """ SMS Preprocess  """
+import sys
+sys.path.append('..')
 import time
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -7,7 +9,7 @@ import sms_dico.sms_traduction
 import french_dico.french
 import antispam
 
-d = antispam.Detector("french_antispam/antispam_model.dat")
+d = antispam.Detector("../french_antispam/antispam_model.dat")
 dico_fr = french_dico.french.french.split("\n")
 dict_pho_fr = dict()
 dico_sms_fr = dict()
