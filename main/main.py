@@ -4,7 +4,9 @@ import time
 import sys
 import reg_exps
 import data_getter
-import text_preprocess
+import text_preprocess 
+import treetaggerwrapper
+import pprint
 
 def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
                         list_sms_numbers = data_getter.sms_sent_to):
@@ -18,6 +20,12 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
     for i, (num, number_call) in zip(range(1, n+1), list_sms_numbers.most_common(n)):
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
+
+def words_tagging(list_sms_content):
+    tagger = treetaggerwrapper.TreeTagger(TAGLANG='fr', TAGDIR='../treetagger')
+    tags = tagger.tag_text(list_sms_content)
+    tags2 = treetaggerwrapper.make_tags(tags)
+    pprint.pprint(tags2)
 
 def remove_spams(list_sms_content):
     ''' Return the list of sms after removing the spams '''
@@ -80,9 +88,16 @@ def main():
     list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
 
     list_sms_content = remove_spams(list_sms_content)
-    print(list_sms_content[:10])
 
     start = start2 = 0
+
+    ############################################################
+
+    # Tagging words
+
+    # words_tagging(list_sms_content)
+
+    ############################################################
 
     ############################################################
     input_list_keywords = input('Would you like to search the keywords from "list.txt" ? (Y/N)')
