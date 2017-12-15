@@ -1,6 +1,7 @@
 """ A POC of a programm that will extract some suspicious messages """
 import re
 import time
+import sys
 import reg_exps
 import data_getter
 import text_preprocess 
@@ -84,7 +85,7 @@ def main():
 
     # Tagging words
 
-    # words_tagging(list_sms_content)
+    words_tagging(list_sms_content[:10])
 
     ############################################################
 
