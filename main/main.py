@@ -55,20 +55,15 @@ def get_list_regexp(list_sms_content):
         index += 1
         if body:
             # If regexp match then print line and go to next sms/line
+            # Or if any date match then we print the line and go to next sms/line
             if re.search(reg_exps.regexp_money, body) or \
                 re.search(reg_exps.regexp_hours, body) or \
                 re.search(reg_exps.regexp_currency, body) or \
-                re.search(reg_exps.regexp_email, body):
+                re.search(reg_exps.regexp_email, body) or \
+                any(re.search(r"\b"+date+"\\b", body) for date in reg_exps.dates):
                 cpt_regexp += 1
                 list_index.append(index)
                 continue
-            # If any date match then we print the line and go to next sms/line
-            for date in reg_exps.dates:
-                regexp_dates = r"\b"+date+"\\b"
-                if re.search(regexp_dates, body):
-                    cpt_regexp += 1
-                    list_index.append(index)
-                    break
     return (list_index, cpt_regexp)
 
 def main():
@@ -84,7 +79,6 @@ def main():
     ############################################################
 
     # Tagging words
-
     # words_tagging(list_sms_content[:10])
 
     ############################################################
@@ -107,7 +101,7 @@ def main():
     ############################################################
 
     # Total execution time for the operations
-    print("Execution time :", round(start + start2, 2), "seconds")
+    print("Search for keywords/moneys/dates/times in", round(start + start2, 2), "seconds")
 
     try:
         print(cpt_keyword, "Keywords found")

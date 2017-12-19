@@ -24,6 +24,7 @@ stop_words = stopwords.words('french')
 
 def preprocess_sms(list_sms):
     clean_sms = []
+    cpt_spam = 0
     start = time.time()
     for sms in list_sms:
         try:
@@ -31,6 +32,7 @@ def preprocess_sms(list_sms):
         except TypeError:
             is_spam = 0
         if is_spam > 0.99:
+            cpt_spam += 1
             continue
         else:
             try:
@@ -47,5 +49,7 @@ def preprocess_sms(list_sms):
                 sms_res = ' '
             finally:
                 clean_sms.append(sms_res[:-1])
-    print(round(time.time() - start, 2))
+    print('The preprocess of the sms have been done in ', 
+            round(time.time() - start, 2), 'seconds', sep = '')
+    print(cpt_spam, 'spam/ad has been deleted')
     return clean_sms

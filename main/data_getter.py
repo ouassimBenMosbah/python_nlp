@@ -8,12 +8,9 @@ import time
 # Name of the file containing the messages
 fname = os.path.join(os.path.dirname(__file__), os.pardir, "sms.xml")
 
-start = time.time()
-
 res = ""
 with open(fname, 'r') as f:
     corpus = f.read().split("</sms>")
-
 
 for sms in corpus:
     sms = sms.replace("\n", "").replace('<3', '(coeur)').replace('&', 'et')
@@ -24,9 +21,6 @@ for sms in corpus:
 
 with open(fname, 'w') as f:
     f.write(res[:-7])
-
-start = time.time() - start
-print("Execution time for REGEX :", round(start, 2), "seconds")
 
 tree = etree.parse(fname)
 
