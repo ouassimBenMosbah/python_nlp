@@ -6,7 +6,9 @@ import reg_exps
 import data_getter
 import text_preprocess 
 import treetaggerwrapper
-import pprint
+from pprint import pprint
+import nltk
+from nltk.tokenize import word_tokenize
 
 def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
                         list_sms_numbers = data_getter.sms_sent_to):
@@ -21,11 +23,16 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-def words_tagging(list_sms_content):
+def words_tagging(list_sms_tokenized):
     tagger = treetaggerwrapper.TreeTagger(TAGLANG='fr', TAGDIR='../treetagger')
-    tags = tagger.tag_text(list_sms_content)
-    tags2 = treetaggerwrapper.make_tags(tags)
-    pprint.pprint(tags2)
+    list_sms_tagged = []
+    for sms in list_sms_tokenized:
+        tags = tagger.tag_text(sms)
+        list_sms_tagged.append(treetaggerwrapper.make_tags(tags))
+    return list_sms_tagged
+
+def chunk(list_sms_tagged):
+    pass
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
@@ -70,16 +77,20 @@ def main():
     # Decode sms smileys and so on ...
     non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 
+    ############################################################
     print_general_stats()
 
-    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-
+    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies[:3])
+    ############################################################
+    
     start = start2 = 0
 
     ############################################################
-
+    list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
     # Tagging words
-    words_tagging(list_sms_content[:10])
+    list_sms_tagged = words_tagging(list_sms_tokenized)
+    
+    chunk(list_sms_tagged)
 
     ############################################################
 
