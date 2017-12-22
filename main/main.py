@@ -9,6 +9,7 @@ import treetaggerwrapper
 from pprint import pprint
 import nltk
 from nltk.tokenize import word_tokenize
+from nltk.chunk.regexp import ChunkRuleWithContext, ChunkString
 
 def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
                         list_sms_numbers = data_getter.sms_sent_to):
@@ -36,16 +37,14 @@ def chunk(list_sms_tagged):
     for sms_tagged in list_sms_tagged:
         new_sms_tagged = []
         for _, pos, lemma in sms_tagged:
-            if 'VER' in pos:
-                new_sms_tagged.append((lemma, 'VER'))
-            else:
                 new_sms_tagged.append((lemma, pos))
+#####################################
         new_list_tagged.append(new_sms_tagged)
-    chunkGram = "AdjP: {<ADV>*<ADJ>}"
-    chunkParser = nltk.RegexpParser(chunkGram)
+    chunkGram = "Phrase: {<PRO:PER|NOM>+<.*>*<VER.*>+<.*>*<NOM>+}"""
+    chunkParser = nltk.RegexpParser(chunkGram, loop=2)
     for sms_tagged in new_list_tagged:
         chunked = chunkParser.parse(sms_tagged)
-        chunked.draw()
+        print(chunked)
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
