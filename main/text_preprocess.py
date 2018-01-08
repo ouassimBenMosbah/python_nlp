@@ -8,8 +8,10 @@ import sms_dico.sms
 import sms_dico.sms_traduction
 import french_dico.french
 import antispam
+import enchant
 
 d = antispam.Detector("../french_antispam/antispam_model.dat")
+word_correction = enchant.Dict("fr_FR")
 dico_fr = french_dico.french.french.split("\n")
 dict_pho_fr = dict()
 dico_sms_fr = dict()
@@ -43,9 +45,13 @@ def preprocess_sms(list_sms):
                 for word in words:
                     if word in stop_words:
                         continue
-                    # elif word in dico_sms_fr:
-                    #     sms_res += dico_sms_fr[word] + ' '
+                    elif word_correction.check(word):
+                        sms_res += word + ' '
+                    elif word in dico_sms_fr:
+                         sms_res += dico_sms_fr[word] + ' '
                     else:
+                        if len(word) > 1:
+                            word = word_correction.suggest(word)[0]
                         sms_res += word + ' '
             except:
                 sms_res = ' '

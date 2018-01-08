@@ -40,11 +40,11 @@ def chunk(list_sms_tagged):
                 new_sms_tagged.append((lemma, pos))
 #####################################
         new_list_tagged.append(new_sms_tagged)
-    chunkGram = "Phrase: {<PRO:PER|NOM>+<.*>*<VER.*>+<.*>*<NOM>+}"""
+    chunkGram = "Tag: {<PRO:PER|NOM>+<VER.*><NOM>}"""
     chunkParser = nltk.RegexpParser(chunkGram, loop=2)
     for sms_tagged in new_list_tagged:
         chunked = chunkParser.parse(sms_tagged)
-        print(chunked)
+        chunked.draw()
 
 def get_list_keywords(list_sms_content, fname = 'list.txt'):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
@@ -101,8 +101,8 @@ def main():
     list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
     # Tagging words
     list_sms_tagged = words_tagging(list_sms_tokenized)
-    
-    chunk(list_sms_tagged)
+    print(list_sms_content)
+    #chunk(list_sms_tagged)
 
     ############################################################
 
