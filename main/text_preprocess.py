@@ -8,6 +8,7 @@ import sms_dico.sms
 import sms_dico.sms_traduction
 import french_dico.french
 import antispam
+import enchant
 
 d = antispam.Detector("../french_antispam/antispam_model.dat")
 dico_fr = french_dico.french.french.split("\n")
