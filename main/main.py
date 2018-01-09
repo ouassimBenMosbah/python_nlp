@@ -93,7 +93,6 @@ def main():
     print_general_stats()
 
     list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
-    print(len((list_sms_content)))
     ############################################################
     
     start = start2 = 0
@@ -102,7 +101,6 @@ def main():
     list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
     # Tagging words
     list_sms_tagged = words_tagging(list_sms_tokenized)
-    print(list_sms_content)
     #chunk(list_sms_tagged)
 
     ############################################################
