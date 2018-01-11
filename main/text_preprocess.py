@@ -6,6 +6,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from polyglot.detect import Detector
 from polyglot.text import Text
+from textblob import TextBlob
+from custom_textblob.textblob_fr import PatternTagger, PatternAnalyzer
 import sms_dico.sms
 import sms_dico.sms_traduction
 import french_dico.french
@@ -44,22 +46,29 @@ def preprocess_sms(list_sms):
                 words = word_tokenize(sms, language = 'french')
                 for word in words:
                     word = word.lower()
-                    if word in stop_words:
-                        continue
-                    elif word in dico_fr:
+                    # if word in stop_words:
+                    #     continue
+                    if word in dico_fr:
                         sms_res += word + ' '
                     elif word in dico_sms_fr:
                          sms_res += dico_sms_fr[word] + ' '
                     else:
-                        if len(word) > 1 and word_correction.suggest(word):
-                            word = word_correction.suggest(word)[0]
+                        # if len(word) > 1 and word_correction.suggest(word):
+                        #     word = word_correction.suggest(word)[0]
                         sms_res += word + ' '
             except:
                 sms_res = ' '
 
             clean_sms.append(sms_res[:-1])
 
+            print('-------------------------')
+            print(sms_res[:-1])
+            print('---')
             print(Text(sms_res[:-1]).entities)
+            print('---')
+            blob = TextBlob(sms_res[:-1], pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+            print(blob.sentiment)
+            print('-------------------------')
 
     print('The preprocess of the sms have been done in ', 
             round(time.time() - start, 2), 'seconds', sep = '')

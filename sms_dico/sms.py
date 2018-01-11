@@ -20,7 +20,8 @@ arf
 erf
 asv
 att
-bap  
+bap
+bank
 bb
 bcp
 bg 
@@ -34,6 +35,7 @@ bsr
 bsx 
 bvo
 c
+ca
 cc 
 chui
 j ss
@@ -75,6 +77,10 @@ jtd
 jtm
 j'tm
 j'te
+jveux
+jveu
+jve
+kan
 k
 kk
 kay
@@ -147,6 +153,8 @@ prk
 pkoi
 pr
 ptdr
+ptit
+p'tit
 pv
 qq1
 qqn
@@ -191,6 +199,7 @@ twa
 toa
 toua
 toé
+vnt
 vostfr
 vtfe
 vtff

@@ -21,6 +21,7 @@ embarasser
 age , sexe , ville
 attend
 bise aux petits
+banque
 bébé
 beaucoup
 beau gosse
@@ -34,6 +35,7 @@ bonsoir
 bisous
 bravo
 c'est
+ça
 coucou
 je suis
 je suis
@@ -75,6 +77,10 @@ je t'adore
 je t'aime
 je t'aime
 je te
+je veux
+je veux
+je veux
+quand
 ok
 ok
 ok
@@ -147,6 +153,8 @@ pourquoi
 pourquoi
 pour
 pété de rire
+petit
+petit
 en privé
 quelqu'un
 quelqu'un
@@ -191,6 +199,7 @@ toi
 toi
 toi
 toi
+vont
 version originale sous-titrée en français
 va te faire enculer
 vas te faire foutre
