@@ -63,11 +63,12 @@ def preprocess_sms(list_sms):
 
             print('-------------------------')
             print(sms_res[:-1])
-            print('---')
-            print(Text(sms_res[:-1]).entities)
+            # print('---')
+            # print(Text(sms_res[:-1]).entities)
             print('---')
             blob = TextBlob(sms_res[:-1], pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
             print(blob.sentiment)
+            print(blob.sentiment.__dict__['assessments'])
             print('-------------------------')
 
     print('The preprocess of the sms have been done in ', 
