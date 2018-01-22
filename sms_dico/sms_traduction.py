@@ -63,6 +63,7 @@ dans
 désolé
 de toute façon
 fais pas chier
+fou
 français
 français
 ferme ta gueule

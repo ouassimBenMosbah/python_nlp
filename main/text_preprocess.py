@@ -12,10 +12,8 @@ import sms_dico.sms
 import sms_dico.sms_traduction
 import french_dico.french
 import antispam
-import enchant
 
 d = antispam.Detector("../french_antispam/antispam_model.dat")
-word_correction = enchant.Dict("fr_FR")
 dico_fr = french_dico.french.french.split("\n")
 dict_pho_fr = dict()
 dico_sms_fr = dict()
@@ -46,9 +44,9 @@ def preprocess_sms(list_sms):
                 words = word_tokenize(sms, language = 'french')
                 for word in words:
                     word = word.lower()
-                    # if word in stop_words:
-                    #     continue
-                    if word in dico_fr:
+                    if word in stop_words:
+                        continue
+                    elif word in dico_fr:
                         sms_res += word + ' '
                     elif word in dico_sms_fr:
                          sms_res += dico_sms_fr[word] + ' '
@@ -63,12 +61,12 @@ def preprocess_sms(list_sms):
 
             print('-------------------------')
             print(sms_res[:-1])
-            # print('---')
-            # print(Text(sms_res[:-1]).entities)
             print('---')
-            blob = TextBlob(sms_res[:-1], pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-            print(blob.sentiment)
-            print(blob.sentiment.__dict__['assessments'])
+            print(Text(sms_res[:-1]).entities)
+            # print('---')
+            # blob = TextBlob(sms_res[:-1], pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+            # print(blob.sentiment)
+            # print(blob.sentiment.__dict__['assessments'])
             print('-------------------------')
 
     print('The preprocess of the sms have been done in ', 

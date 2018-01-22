@@ -2,3 +2,5 @@ nltk
 antispam
 treetaggerwrapper
 lxml
+polyglot
+textblob
