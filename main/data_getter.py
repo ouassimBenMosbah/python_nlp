@@ -6,7 +6,7 @@ import re
 import time
 
 # Name of the file containing the messages
-fname = os.path.join(os.path.dirname(__file__), os.pardir, "sms.xml")
+fname = os.path.join(os.path.dirname(__file__), os.pardir, "sms1.xml")
 
 res = ""
 with open(fname, 'r') as f:

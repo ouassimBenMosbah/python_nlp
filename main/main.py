@@ -7,6 +7,7 @@ import data_getter
 import text_preprocess 
 import treetaggerwrapper
 from pprint import pprint
+from xml.etree.ElementTree import Element, SubElement, ElementTree
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.chunk.regexp import ChunkRuleWithContext, ChunkString
@@ -23,6 +24,18 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
     for i, (num, number_call) in enumerate(list_sms_numbers.most_common(n), 1):
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
+
+def output_new_list_sms(list_sms_rated):
+    i = 0
+    root = Element('corpus')
+    root.set('version', '1.0')
+    while i < len(list_sms_rated):
+        score, objectivity, content = list_sms_rated[i]
+        sms = SubElement(root, 'sms',{'id' : str(i)})
+        cont = SubElement(sms, 'cont')
+        cont.text = content
+        i += 1
+    ElementTree(root).write('res.xml', method='xml')
 
 # def words_tagging(list_sms_tokenized):
 #     tagger = treetaggerwrapper.TreeTagger(TAGLANG='fr', TAGDIR='../treetagger')
@@ -92,11 +105,16 @@ def main():
     ############################################################
     print_general_stats()
 
-    list_sms_content = text_preprocess.preprocess_sms(data_getter.sms_bodies)
+    list_sms_rated = text_preprocess.preprocess_sms(data_getter.sms_bodies)
+    list_sms_content = [sms[-1] for sms in list_sms_rated]
     ############################################################
     
     start = start2 = 0
 
+    ############################################################
+    output_new_list_sms(list_sms_rated)
+    ############################################################
+    
     ############################################################
     list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
     # Tagging words

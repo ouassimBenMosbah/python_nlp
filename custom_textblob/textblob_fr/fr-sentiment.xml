@@ -5265,6 +5265,4 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="guer" pos="*" polarity="-1.00" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="braquage" pos="*" polarity="-1.00" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="brakage" pos="*" polarity="-1.00" subjectivity="0.00" intensity="1.0" confidence="1.0" />
-
-
 </sentiment>

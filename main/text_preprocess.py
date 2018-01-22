@@ -2,8 +2,10 @@
 import sys
 sys.path.append('..')
 import time
+from nltk.stem.snowball import FrenchStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from operator import itemgetter
 from polyglot.detect import Detector
 from polyglot.text import Text
 from textblob import TextBlob
@@ -14,6 +16,7 @@ import french_dico.french
 import antispam
 
 d = antispam.Detector("../french_antispam/antispam_model.dat")
+stemmer = FrenchStemmer()
 dico_fr = french_dico.french.french.split("\n")
 dict_pho_fr = dict()
 dico_sms_fr = dict()
@@ -57,19 +60,23 @@ def preprocess_sms(list_sms):
             except:
                 sms_res = ' '
 
-            clean_sms.append(sms_res[:-1])
 
-            print('-------------------------')
-            print(sms_res[:-1])
-            print('---')
-            print(Text(sms_res[:-1]).entities)
+            sms_res = stemmer.stem(sms_res)
+            # print('-------------------------')
+            # print(sms)
             # print('---')
-            # blob = TextBlob(sms_res[:-1], pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-            # print(blob.sentiment)
+            # print(Text(sms_res).entities)
+            # print('---')
+            blob = TextBlob(sms_res, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
+            # print(blob.sentiment[0])
             # print(blob.sentiment.__dict__['assessments'])
-            print('-------------------------')
+            # print('-------------------------')
+
+            clean_sms.append([blob.sentiment[0], blob.sentiment[1], sms])
+
+    clean_sms = sorted(clean_sms, key=itemgetter(0, 1))
 
     print('The preprocess of the sms have been done in ', 
             round(time.time() - start, 2), 'seconds', sep = '')
     print(cpt_spam, 'spam/ad has been deleted')
-    return clean_sms
+    return [sms for sms in clean_sms]
