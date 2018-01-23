@@ -32,7 +32,7 @@ def preprocess_sms(list_sms):
     clean_sms = []
     cpt_spam = 0
     start = time.time()
-    for sms in list_sms:
+    for id, sms in list_sms:
         try:
             is_spam = d.score(sms)
         except TypeError:
@@ -63,16 +63,12 @@ def preprocess_sms(list_sms):
 
             sms_res = stemmer.stem(sms_res)
             # print('-------------------------')
-            # print(sms)
-            # print('---')
             # print(Text(sms_res).entities)
             # print('---')
             blob = TextBlob(sms_res, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-            # print(blob.sentiment[0])
-            # print(blob.sentiment.__dict__['assessments'])
             # print('-------------------------')
 
-            clean_sms.append([blob.sentiment[0], blob.sentiment[1], sms])
+            clean_sms.append([blob.sentiment[0], blob.sentiment[1], id, sms])
 
     clean_sms = sorted(clean_sms, key=itemgetter(0, 1))
 

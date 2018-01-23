@@ -12,6 +12,11 @@ import nltk
 from nltk.tokenize import word_tokenize
 from nltk.chunk.regexp import ChunkRuleWithContext, ChunkString
 
+# Decode sms smileys and so on ...
+non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
+FILE_LIST_KEYWORDS = 'list.txt'
+XML_SMS = "sms1.xml"
+
 def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
                         list_sms_numbers = data_getter.sms_sent_to):
     ''' 
@@ -30,8 +35,8 @@ def output_new_list_sms(list_sms_rated):
     root = Element('corpus')
     root.set('version', '1.0')
     while i < len(list_sms_rated):
-        score, objectivity, content = list_sms_rated[i]
-        sms = SubElement(root, 'sms',{'id' : str(i)})
+        score, objectivity, id, content = list_sms_rated[i]
+        sms = SubElement(root, 'sms',{'id' : str(id), 'score': str(score)})
         cont = SubElement(sms, 'cont')
         cont.text = content
         i += 1
@@ -59,7 +64,7 @@ def output_new_list_sms(list_sms_rated):
 #         chunked = chunkParser.parse(sms_tagged)
 #         chunked.draw()
 
-def get_list_keywords(list_sms_content, fname = 'list.txt'):
+def get_list_keywords(list_sms_content, fname = FILE_LIST_KEYWORDS):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
     list_keyword = []
     list_index = []
@@ -99,13 +104,10 @@ def get_list_regexp(list_sms_content):
     return (list_index, cpt_regexp)
 
 def main():
-    # Decode sms smileys and so on ...
-    non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-
     ############################################################
     print_general_stats()
 
-    list_sms_rated = text_preprocess.preprocess_sms(data_getter.sms_bodies)
+    list_sms_rated = text_preprocess.preprocess_sms(data_getter.list_sms[:100])
     list_sms_content = [sms[-1] for sms in list_sms_rated]
     ############################################################
     
