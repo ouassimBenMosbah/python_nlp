@@ -54,19 +54,12 @@ def preprocess_sms(list_sms):
                     elif word in dico_sms_fr:
                          sms_res += dico_sms_fr[word] + ' '
                     else:
-                        # if len(word) > 1 and word_correction.suggest(word):
-                        #     word = word_correction.suggest(word)[0]
                         sms_res += word + ' '
             except:
                 sms_res = ' '
 
-
             sms_res = stemmer.stem(sms_res)
-            # print('-------------------------')
-            # print(Text(sms_res).entities)
-            # print('---')
             blob = TextBlob(sms_res, pos_tagger=PatternTagger(), analyzer=PatternAnalyzer())
-            # print('-------------------------')
 
             clean_sms.append([blob.sentiment[0], blob.sentiment[1], id, sms])
 

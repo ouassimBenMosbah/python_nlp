@@ -4,13 +4,11 @@ import time
 import sys
 import reg_exps
 import data_getter
-import text_preprocess 
-import treetaggerwrapper
+import text_preprocess
 from pprint import pprint
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.chunk.regexp import ChunkRuleWithContext, ChunkString
 
 # Decode sms smileys and so on ...
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
@@ -41,28 +39,6 @@ def output_new_list_sms(list_sms_rated):
         cont.text = content
         i += 1
     ElementTree(root).write('res.xml', method='xml')
-
-# def words_tagging(list_sms_tokenized):
-#     tagger = treetaggerwrapper.TreeTagger(TAGLANG='fr', TAGDIR='../treetagger')
-#     list_sms_tagged = []
-#     for sms in list_sms_tokenized:
-#         tags = tagger.tag_text(sms)
-#         list_sms_tagged.append(treetaggerwrapper.make_tags(tags))
-#     return list_sms_tagged
-
-# def chunk(list_sms_tagged):
-#     new_list_tagged = []
-#     for sms_tagged in list_sms_tagged:
-#         new_sms_tagged = []
-#         for _, pos, lemma in sms_tagged:
-#                 new_sms_tagged.append((lemma, pos))
-# #####################################
-#         new_list_tagged.append(new_sms_tagged)
-#     chunkGram = "Tag: {<PRO:PER|NOM>+<VER.*><NOM>}"""
-#     chunkParser = nltk.RegexpParser(chunkGram, loop=2)
-#     for sms_tagged in new_list_tagged:
-#         chunked = chunkParser.parse(sms_tagged)
-#         chunked.draw()
 
 def get_list_keywords(list_sms_content, fname = FILE_LIST_KEYWORDS):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
@@ -107,7 +83,7 @@ def main():
     ############################################################
     print_general_stats()
 
-    list_sms_rated = text_preprocess.preprocess_sms(data_getter.list_sms[:100])
+    list_sms_rated = text_preprocess.preprocess_sms(data_getter.list_sms)
     list_sms_content = [sms[-1] for sms in list_sms_rated]
     ############################################################
     
@@ -119,9 +95,6 @@ def main():
     
     ############################################################
     list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
-    # Tagging words
-    # list_sms_tagged = words_tagging(list_sms_tokenized)
-    #chunk(list_sms_tagged)
 
     ############################################################
 
