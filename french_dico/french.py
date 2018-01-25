@@ -1,4 +1,4 @@
-french ="""a
+french = """a
 à
 abaissa
 abaissaient

@@ -18,7 +18,8 @@ for sms in corpus:
     sms = sms.replace("\n", "").replace('<3', '(coeur)').replace('&', 'et')
     match = re.search(r"<cont>.*<.*</cont>", sms)
     if match:
-        sms = re.sub(r"<cont>(?P<a>.*)</cont>", "<cont>" + match.group()[6:-7].replace('<', ' ') + "</cont>", sms)
+        sms = re.sub(r"<cont>(?P<a>.*)</cont>", "<cont>" +
+                     match.group()[6:-7].replace('<', ' ') + "</cont>", sms)
     res += sms + "</sms>\n"
 
 with open(fname, 'w') as f:

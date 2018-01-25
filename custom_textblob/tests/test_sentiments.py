@@ -6,6 +6,7 @@ from nose.tools import *  # PEP8 asserts
 from text.blob import TextBlob
 from textblob_fr import PatternAnalyzer as FrAnalyzer
 
+
 class TestPatternAnalyzer(unittest.TestCase):
 
     def setUp(self):

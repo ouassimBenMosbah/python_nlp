@@ -13,7 +13,7 @@ ajd
 oj
 auj
 ojd
-alp 
+alp
 a+
 ama
 arf
@@ -24,7 +24,7 @@ bap
 bank
 bb
 bcp
-bg 
+bg
 biz
 bz
 bj
@@ -32,17 +32,17 @@ bjr
 bn
 b8
 bsr
-bsx 
+bsx
 bvo
 c
 ca
-cc 
+cc
 chui
 j ss
 cki
-cmb 
+cmb
 cmr
-cmer 
+cmer
 cimer
 cpg
 ctb
@@ -102,8 +102,8 @@ lgtmp
 lol
 mdp
 mdr
-merki 
-mci 
+merki
+mci
 mnt
 mp
 mrd

@@ -15,11 +15,12 @@ non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 FILE_LIST_KEYWORDS = 'list.txt'
 XML_SMS = "sms1.xml"
 
-def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies, 
-                        list_sms_numbers = data_getter.sms_sent_to):
-    ''' 
-        Print general stats. 
-        By default will display the 3 most called numbers 
+
+def print_general_stats(n=3, list_sms_content=data_getter.sms_bodies,
+                        list_sms_numbers=data_getter.sms_sent_to):
+    '''
+        Print general stats.
+        By default will display the 3 most called numbers
     '''
     print("-", len(list_sms_content), "messages has been sent")
     print("#####################################")
@@ -28,105 +29,122 @@ def print_general_stats(n = 3, list_sms_content = data_getter.sms_bodies,
         print(i, "- Num:", num, "called", number_call, "times !")
     print("#####################################")
 
-def output_new_list_sms(list_sms_rated):
+
+def output_new_list_sms(list_sms_rated, xml_name):
     i = 0
     root = Element('corpus')
     root.set('version', '1.0')
     while i < len(list_sms_rated):
-        score, objectivity, id, content = list_sms_rated[i]
-        sms = SubElement(root, 'sms',{'id' : str(id), 'score': str(score)})
+        id, content, score = list_sms_rated[i]
+        sms = SubElement(root, 'sms', {'id': str(id), 'score': str(score)})
         cont = SubElement(sms, 'cont')
         cont.text = content
         i += 1
-    ElementTree(root).write('res.xml', method='xml')
+    ElementTree(root).write(xml_name, method='xml')
 
-def get_list_keywords(list_sms_content, fname = FILE_LIST_KEYWORDS):
+
+def get_list_keywords(list_sms_content, fname=FILE_LIST_KEYWORDS):
     ''' Keep only the messages with one of the word of the fname given in parameter. '''
     list_keyword = []
-    list_index = []
-    index = 0
-    cpt_keyword = 0
+    list_res = []
 
     with open(fname) as f:
         for line in f:
             if line.strip():
                 list_keyword.append(line.strip())
-    for body in list_sms_content:
+    for id, body, score in list_sms_content:
         if body:
-            if any(x in body for x in list_keyword):
-                cpt_keyword += 1
-                list_index.append(index)
-        index += 1
-    return (list_index, cpt_keyword)
+            if any(keyword in body for keyword in list_keyword):
+                list_res.append((id, body, score))
+    print('%s keyword found\n' % str(len(list_res)))
+    return list_res
+
 
 def get_list_regexp(list_sms_content):
     ''' Keep only the messages matching with the regexps '''
-    cpt_regexp = 0
-    list_index = []
-    index = -1
-    for body in list_sms_content:
-        index += 1
+    list_currency = []
+    list_date = []
+    list_email = []
+    list_tel = []
+    for id, body, score in list_sms_content:
         if body:
             # If regexp match then print line and go to next sms/line
-            # Or if any date match then we print the line and go to next sms/line
+            # Or if any date match then we print the line and go to next
+            # sms/line
             if re.search(reg_exps.regexp_money, body) or \
-                re.search(reg_exps.regexp_hours, body) or \
-                re.search(reg_exps.regexp_currency, body) or \
-                re.search(reg_exps.regexp_email, body) or \
-                any(re.search(r"\b"+date+"\\b", body) for date in reg_exps.dates):
-                cpt_regexp += 1
-                list_index.append(index)
-                continue
-    return (list_index, cpt_regexp)
+                    re.search(reg_exps.regexp_currency, body):
+                list_currency.append((id, body, score))
+            if re.search(
+                reg_exps.regexp_hours,
+                body) or any(
+                re.search(
+                    r"\b" + date + "\\b",
+                    body) for date in reg_exps.dates):
+                list_date.append((id, body, score))
+            if re.search(reg_exps.regexp_email, body):
+                list_email.append((id, body, score))
+            if re.search(reg_exps.regexp_tel, body):
+                list_tel.append((id, body, score))
+    print('%s regular expressions matched\n' % str(
+        len(list_currency) + len(list_date) + len(list_email) + len(list_tel)))
+    return (list_currency, list_date, list_email, list_tel)
+
 
 def main():
     ############################################################
     print_general_stats()
 
-    list_sms_rated = text_preprocess.preprocess_sms(data_getter.list_sms)
-    list_sms_content = [sms[-1] for sms in list_sms_rated]
+    list_sms_content = text_preprocess.preprocess_sms(
+        data_getter.list_sms[:1000])
+    list_sms_content = [(sms[-2], sms[-1], sms[0]) for sms in list_sms_content]
     ############################################################
-    
+
     start = start2 = 0
 
     ############################################################
-    output_new_list_sms(list_sms_rated)
-    ############################################################
-    
-    ############################################################
-    list_sms_tokenized = [word_tokenize(sms, language ='french') for sms in list_sms_content]
-
+    output_new_list_sms(list_sms_content, 'results/new_sms.xml')
     ############################################################
 
     ############################################################
-    input_list_keywords = input('Would you like to search the keywords from "list.txt" ? (Y/N)')
+    list_sms_tokenized = [word_tokenize(
+        sms[1], language='french') for sms in list_sms_content]
+    ############################################################
+
+    ############################################################
+    input_list_keywords = input(
+        'Would you like to search the keywords from "list.txt" ? (y/N)')
     if input_list_keywords and input_list_keywords.lower() in ['o', 'y']:
         # Timestamp of the begining of the operations
         start = time.time()
-        list_index_keywords, cpt_keyword = get_list_keywords(list_sms_content)
+        list_keywords = get_list_keywords(list_sms_content)
+        if list_keywords:
+            output_new_list_sms(list_keywords, 'results/keywords.xml')
         start = time.time() - start
     ############################################################
 
     ############################################################
-    input_regexps = input('Would you like to search for money/dates/time/emails ? (Y/N)')
+    input_regexps = input(
+        'Would you like to search for money/dates/time/emails ? (y/N)')
     if input_list_keywords and input_regexps.lower() in ['o', 'y']:
         start2 = time.time()
-        list_index, cpt_regexp = get_list_regexp(list_sms_content)
+
+        list_currency, list_date, list_email, list_tel = get_list_regexp(
+            list_sms_content)
+        if list_currency:
+            output_new_list_sms(list_currency, 'results/currency.xml')
+        if list_date:
+            output_new_list_sms(list_date, 'results/date.xml')
+        if list_email:
+            output_new_list_sms(list_email, 'results/email.xml')
+        if list_tel:
+            output_new_list_sms(list_tel, 'results/tel.xml')
+
         start2 = time.time() - start2
     ############################################################
 
     # Total execution time for the operations
-    print("Search for keywords/moneys/dates/times in", round(start + start2, 2), "seconds")
-
-    try:
-        print(cpt_keyword, "Keywords found")
-    except NameError as e:
-        print("0 Keyword found")
-
-    try:
-        print(cpt_regexp, "Regular expressions matched")
-    except NameError as e:
-        print("0 Regular expression found")
+    print("Search for keywords/moneys/dates/times in",
+          round(start + start2, 2), "seconds")
 
 
 if __name__ == '__main__':

@@ -27,6 +27,7 @@ def find_version(fname):
         raise RuntimeError('Cannot find version information')
     return version
 
+
 __version__ = find_version("textblob_fr/__init__.py")
 
 if 'publish' in sys.argv:
@@ -63,12 +64,13 @@ def read(fname):
         content = fp.read()
     return content
 
+
 setup(
     name='textblob-fr',
     version=__version__,
     description='French language support for TextBlob.',
     long_description=(read("README.rst") + '\n\n' +
-                        read("HISTORY.rst")),
+                      read("HISTORY.rst")),
     author='Steven Loria',
     author_email='sloria1@gmail.com',
     url='https://github.com/sloria/textblob-fr',
