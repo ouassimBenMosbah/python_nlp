@@ -1,6 +1,5 @@
 """ SMS Preprocess  """
 import sys
-sys.path.append('..')
 import time
 from nltk.stem.snowball import FrenchStemmer
 from nltk.tokenize import word_tokenize
@@ -9,11 +8,12 @@ from operator import itemgetter
 from polyglot.detect import Detector
 from polyglot.text import Text
 from textblob import TextBlob
+import antispam
+sys.path.append('..')
 from custom_textblob.textblob_fr import PatternTagger, PatternAnalyzer
+import french_dico.french
 import sms_dico.sms
 import sms_dico.sms_traduction
-import french_dico.french
-import antispam
 
 d = antispam.Detector("../french_antispam/antispam_model.dat")
 stemmer = FrenchStemmer()
@@ -70,4 +70,4 @@ def preprocess_sms(list_sms):
     print('The preprocess of the sms have been done in ',
           round(time.time() - start, 2), 'seconds', sep='')
     print(cpt_spam, 'spam/ad has been detected\n')
-    return [sms for sms in clean_sms]
+    return clean_sms

@@ -10,14 +10,8 @@ from xml.etree.ElementTree import Element, SubElement, ElementTree
 import nltk
 from nltk.tokenize import word_tokenize
 
-# Decode sms smileys and so on ...
-non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-FILE_LIST_KEYWORDS = 'list.txt'
-XML_SMS = "sms1.xml"
 
-
-def print_general_stats(n=3, list_sms_content=data_getter.sms_bodies,
-                        list_sms_numbers=data_getter.sms_sent_to):
+def print_general_stats(n, list_sms_content, list_sms_numbers):
     '''
         Print general stats.
         By default will display the 3 most called numbers
@@ -43,8 +37,11 @@ def output_new_list_sms(list_sms_rated, xml_name):
     ElementTree(root).write(xml_name, method='xml')
 
 
-def get_list_keywords(list_sms_content, fname=FILE_LIST_KEYWORDS):
-    ''' Keep only the messages with one of the word of the fname given in parameter. '''
+def get_list_keywords(list_sms_content, fname):
+    '''
+        Keep only the messages with one of the word
+        of the fname given in parameter.
+    '''
     list_keyword = []
     list_res = []
 
@@ -92,10 +89,11 @@ def get_list_regexp(list_sms_content):
 
 def main():
     ############################################################
-    print_general_stats()
+    list_sms, sms_sent_to = data_getter.get_sms(XML_SMS)
 
-    list_sms_content = text_preprocess.preprocess_sms(
-        data_getter.list_sms[:1000])
+    print_general_stats(5, list_sms, sms_sent_to)
+
+    list_sms_content = text_preprocess.preprocess_sms(list_sms[:1000])
     list_sms_content = [(sms[-2], sms[-1], sms[0]) for sms in list_sms_content]
     ############################################################
 
@@ -106,17 +104,12 @@ def main():
     ############################################################
 
     ############################################################
-    list_sms_tokenized = [word_tokenize(
-        sms[1], language='french') for sms in list_sms_content]
-    ############################################################
-
-    ############################################################
     input_list_keywords = input(
         'Would you like to search the keywords from "list.txt" ? (y/N)')
     if input_list_keywords and input_list_keywords.lower() in ['o', 'y']:
         # Timestamp of the begining of the operations
         start = time.time()
-        list_keywords = get_list_keywords(list_sms_content)
+        list_keywords = get_list_keywords(list_sms_content, FILE_LIST_KEYWORDS)
         if list_keywords:
             output_new_list_sms(list_keywords, 'results/keywords.xml')
         start = time.time() - start
@@ -148,4 +141,8 @@ def main():
 
 
 if __name__ == '__main__':
+    # Decode sms smileys and so on ...
+    non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
+    FILE_LIST_KEYWORDS = 'list.txt'
+    XML_SMS = "sms1.xml"
     main()
