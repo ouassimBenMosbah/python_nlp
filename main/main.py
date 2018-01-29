@@ -2,6 +2,7 @@
 from __future__ import print_function
 import re
 import time
+import os
 import sys
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 import data_getter
@@ -108,7 +109,9 @@ def main():
     start = start2 = 0
 
     ############################################################
-    output_new_list_sms(list_sms_content, 'results/new_sms.xml')
+    if not os.path.exists(RESULT_DIR):
+        os.makedirs(RESULT_DIR)
+    output_new_list_sms(list_sms_content, os.path.join(RESULT_DIR, 'new_sms.xml'))
     ############################################################
 
     ############################################################
@@ -119,7 +122,7 @@ def main():
         start = time.time()
         list_keywords = get_list_keywords(list_sms_content, FILE_LIST_KEYWORDS)
         if list_keywords:
-            output_new_list_sms(list_keywords, 'results/keywords.xml')
+            output_new_list_sms(list_keywords, os.path.join(RESULT_DIR, 'keywords.xml'))
         start = time.time() - start
     ############################################################
 
@@ -132,13 +135,13 @@ def main():
         list_currency, list_date, list_email, list_tel = get_list_regexp(
             list_sms_content)
         if list_currency:
-            output_new_list_sms(list_currency, 'results/currency.xml')
+            output_new_list_sms(list_currency, os.path.join(RESULT_DIR, 'currency.xml'))
         if list_date:
-            output_new_list_sms(list_date, 'results/date.xml')
+            output_new_list_sms(list_date, os.path.join(RESULT_DIR, 'date.xml'))
         if list_email:
-            output_new_list_sms(list_email, 'results/email.xml')
+            output_new_list_sms(list_email, os.path.join(RESULT_DIR, 'email.xml'))
         if list_tel:
-            output_new_list_sms(list_tel, 'results/tel.xml')
+            output_new_list_sms(list_tel, os.path.join(RESULT_DIR, 'tel.xml'))
 
         start2 = time.time() - start2
     ############################################################
@@ -151,6 +154,9 @@ def main():
 if __name__ == '__main__':
     # Decode sms smileys and so on ...
     non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-    FILE_LIST_KEYWORDS = 'list.txt'
+    CURRENT_FILE = os.path.dirname(__file__)
+    RESULT_DIR = os.path.join(CURRENT_FILE, 'results')
+    FILE_LIST_KEYWORDS = os.path.join(CURRENT_FILE, 'list.txt')
     XML_SMS = 'sms1.xml'
+    
     main()

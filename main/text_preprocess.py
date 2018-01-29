@@ -1,21 +1,22 @@
 ''' SMS Preprocess  '''
+from __future__ import print_function
+from operator import itemgetter
+import os
 import sys
 import time
+import antispam
 from nltk.stem.snowball import FrenchStemmer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from operator import itemgetter
-from polyglot.detect import Detector
-from polyglot.text import Text
 from textblob import TextBlob
-import antispam
-sys.path.append('..')
+sys.path.append(os.path.join(os.path.dirname(__file__), os.pardir))
 from custom_textblob.textblob_fr import PatternTagger, PatternAnalyzer
 import french_dico.french
 import sms_dico.sms
 import sms_dico.sms_traduction
 
-d = antispam.Detector('../french_antispam/antispam_model.dat')
+CURRENT_FILE = os.path.dirname(__file__)
+d = antispam.Detector(os.path.join(CURRENT_FILE, os.pardir, 'french_antispam', 'antispam_model.dat'))
 stemmer = FrenchStemmer()
 dico_fr = french_dico.french.french.split('\n')
 dict_pho_fr = dict()
@@ -33,13 +34,13 @@ for x in ['il', 'je', 'tu', 'elle', 'nous', 'vous', 'on']:
 def preprocess_sms(list_sms):
     '''
         Take into parameter a lits of messages.
-        Return the same list of messages with 
+        Return the same list of messages with
         a new suspicion rate and an objectivity rate
     '''
     clean_sms = []
     cpt_spam = 0
     start = time.time()
-    for id, sms in list_sms:
+    for ID, sms in list_sms:
         try:
             is_spam = d.score(sms)
         except TypeError:
@@ -47,7 +48,7 @@ def preprocess_sms(list_sms):
 
         if is_spam > 0.99:
             cpt_spam += 1
-            clean_sms.append([-1, 0, id, sms])
+            clean_sms.append([-1, 0, ID, sms])
         else:
             try:
                 sms_res = ''
@@ -68,7 +69,7 @@ def preprocess_sms(list_sms):
             blob = TextBlob(sms_res, pos_tagger=PatternTagger(),
                             analyzer=PatternAnalyzer())
 
-            clean_sms.append([blob.sentiment[0], blob.sentiment[1], id, sms])
+            clean_sms.append([blob.sentiment[0], blob.sentiment[1], ID, sms])
 
     clean_sms = sorted(clean_sms, key=itemgetter(0, 1))
 
