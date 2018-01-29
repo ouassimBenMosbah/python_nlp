@@ -1,4 +1,4 @@
-""" A POC of a programm that will extract some suspicious messages """
+''' This program try to detect suspicious messages '''
 import re
 import time
 import sys
