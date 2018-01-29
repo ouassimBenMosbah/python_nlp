@@ -1,12 +1,8 @@
 from collections import Counter
 import unittest
-import os
 import re
 from main import reg_exps as regexs
 from main import main as main_prog
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), 'main'))
-import data_getter
 
 class TestRegexs(unittest.TestCase): 
     def setUp(self):
