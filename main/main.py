@@ -159,4 +159,14 @@ if __name__ == '__main__':
     FILE_LIST_KEYWORDS = os.path.join(CURRENT_FILE, 'list.txt')
     XML_SMS = 'sms1.xml'
     
-    main()
+    file_missing = False
+    if not os.path.exists(FILE_LIST_KEYWORDS):
+        print('- The keywords list is missing.')
+        file_missing != file_missing
+    if not os.path.exists(
+        os.path.join(os.path.dirname(__file__), os.pardir, XML_SMS)):
+        print('- The XML containing the messages is missing.')
+        file_missing != file_missing
+    
+    if not file_missing:
+        main()
