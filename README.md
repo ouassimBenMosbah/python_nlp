@@ -3,8 +3,7 @@ SMS Analysis: Natural Language Processing
 
 The `PyPA recommended`_ tool for installing Python packages.
 
-.. image:: https://img.shields.io/pypi/v/pip.svg
-   :target: https://pypi.python.org/pypi/pip
+[![pip](https://img.shields.io/pypi/v/pip.svg)](https://pypi.python.org/pypi/pip)
 
 .. image:: https://img.shields.io/github/license/ouassimBenMosbah/sms_analysis.svg
     :target: https://github.com/ouassimBenMosbah/sms_analysis/blob/master/LICENSE
