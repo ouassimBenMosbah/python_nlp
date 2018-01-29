@@ -1,9 +1,7 @@
 SMS Analysis: Natural Language Processing
 =========================================
 
-The `PyPA` recommended tool for installing Python packages.
-
-[![](https://img.shields.io/pypi/v/pip.svg)](https://pypi.python.org/pypi/pip) [![](https://img.shields.io/badge/pyhon-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)](https://github.com/ouassimBenMosbah/sms_analysis) [![](https://img.shields.io/github/license/ouassimBenMosbah/sms_analysis.svg)](https://github.com/ouassimBenMosbah/sms_analysis/blob/master/LICENSE)
+[![PyPa](https://img.shields.io/pypi/v/pip.svg)](https://pypi.python.org/pypi/pip) [![Python 3](https://img.shields.io/badge/pyhon-3.3%2C%203.4%2C%203.5%2C%203.6-blue.svg)](https://github.com/ouassimBenMosbah/sms_analysis) [![MIT Licence](https://img.shields.io/github/license/ouassimBenMosbah/sms_analysis.svg)](https://github.com/ouassimBenMosbah/sms_analysis/blob/master/LICENSE) [![Build Status](https://travis-ci.org/ouassimBenMosbah/sms_analysis.svg?branch=master)](https://travis-ci.org/ouassimBenMosbah/sms_analysis)
 
 # Detection of suspicious messages.
 
