@@ -1,4 +1,4 @@
-""" SMS Preprocess  """
+''' SMS Preprocess  '''
 import sys
 import time
 from nltk.stem.snowball import FrenchStemmer
@@ -15,14 +15,14 @@ import french_dico.french
 import sms_dico.sms
 import sms_dico.sms_traduction
 
-d = antispam.Detector("../french_antispam/antispam_model.dat")
+d = antispam.Detector('../french_antispam/antispam_model.dat')
 stemmer = FrenchStemmer()
-dico_fr = french_dico.french.french.split("\n")
+dico_fr = french_dico.french.french.split('\n')
 dict_pho_fr = dict()
 dico_sms_fr = dict()
 
 for french_sms_word, french_sms_trad in zip(sms_dico.sms.sms_dico.split(
-        "\n"), sms_dico.sms_traduction.sms_dico_trad.split("\n")):
+        '\n'), sms_dico.sms_traduction.sms_dico_trad.split('\n')):
     dico_sms_fr.update({french_sms_word: french_sms_trad})
 
 stop_words = stopwords.words('french')
