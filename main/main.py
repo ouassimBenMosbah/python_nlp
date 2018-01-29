@@ -25,6 +25,13 @@ def print_general_stats(n, list_sms_content, list_sms_numbers):
 
 
 def output_new_list_sms(list_sms_rated, xml_name):
+    '''
+        Create an xml file from a list of messages.
+        Each message should a tuple containing :
+        - an id (a unique identifier)
+        - a content (string)
+        - a score of suspicion (float between -1 and 1)
+    '''
     i = 0
     root = Element('corpus')
     root.set('version', '1.0')
@@ -88,6 +95,9 @@ def get_list_regexp(list_sms_content):
 
 
 def main():
+    '''
+        the main function that will be run by the program
+    '''
     ############################################################
     list_sms, sms_sent_to = data_getter.get_sms(XML_SMS)
 
