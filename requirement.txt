@@ -1,6 +1,0 @@
-nltk
-antispam
-treetaggerwrapper
-lxml
-textblob
-unittest

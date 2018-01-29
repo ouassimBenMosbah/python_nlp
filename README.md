@@ -12,7 +12,7 @@ This program aim to help judicial experts to detect suspicious messages. It take
 ## Installation
 
 ```python
-pip3 install -r requirement.txt
+pip3 install -r requirements.txt
 ```
 ## Authors
 
