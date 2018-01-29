@@ -19,7 +19,7 @@ class TestMethods(unittest.TestCase):
             'Il faudrait qu\'on se donne rendez-vous demain',
             'Elle est morte mardi?c\'est ca?',
             'resto a 20h!!',
-            'ça m\'a couté 19,99€ lol',
+            'ça m\'a couté 19,99e lol',
             'il me doit 100 boules',
             'il va me passé10patates!!'
             'test@yopmail.com',
