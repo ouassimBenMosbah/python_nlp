@@ -1,9 +1,14 @@
+from collections import Counter
 import unittest
 import os
 import re
-import main.reg_exps as regexs
+from main import reg_exps as regexs
+from main import main as main_prog
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), 'main'))
+import data_getter
 
-class TestMethods(unittest.TestCase): 
+class TestRegexs(unittest.TestCase): 
     def setUp(self):
         self.dates = regexs.dates
         self.list_regexs = [
@@ -14,8 +19,7 @@ class TestMethods(unittest.TestCase):
             regexs.regexp_tel
         ]
 
-    def test_regexs(self):
-        list_sentences = [
+        self.list_sentences_match = [
             'Il faudrait qu\'on se donne rendez-vous demain',
             'Elle est morte mardi?c\'est ca?',
             'resto a 20h!!',
@@ -32,13 +36,8 @@ class TestMethods(unittest.TestCase):
             'son num é0612345678.'
         ]
 
-        for sentence in list_sentences:
-            self.assertTrue(
-                any(re.search(regex, sentence) for regex in self.list_regexs) or any(
-                    re.search(r'\b' + date + '\\b', sentence) for date in self.dates))
-    
-    def test_regexs_not_matching(self):
-        list_sentences = [
+        self.list_sentences_no_match = [
+            '',
             'Il faudrait qu\'on se voit',
             'il a fait beau',
             'on va manger au resto !',
@@ -52,10 +51,45 @@ class TestMethods(unittest.TestCase):
             '+216 12 34 56 78'
         ]
 
-        for sentence in list_sentences:
+    def test_regexs(self):
+        for sentence in self.list_sentences_match:
+            self.assertTrue(
+                any(re.search(regex, sentence) for regex in self.list_regexs) or any(
+                    re.search(r'\b' + date + '\\b', sentence) for date in self.dates))
+    
+    def test_regexs_not_matching(self):
+        for sentence in self.list_sentences_no_match:
             self.assertFalse(
                 any(re.search(regex, sentence) for regex in self.list_regexs) or any(
                     re.search(r'\b' + date + '\\b', sentence) for date in self.dates))
+
+class TestMethods(unittest.TestCase):
+    def setUp(self): 
+        self.list_content1 = []
+        self.list_content2 = [
+            'bonjour',
+            'test de contenu',
+            'bonsoir',
+            '!!!'
+        ]
+        self.counter_sms_sent1 = Counter()
+        self.counter_sms_sent2 = Counter(
+            num for num in ['0612345678','0612345678', '0687654321'])
+
+
+    def test_print_general_stats(self):
+        try:
+            main_prog.print_general_stats(0, self.list_content1, self.counter_sms_sent1)
+            main_prog.print_general_stats(10, self.list_content1, self.counter_sms_sent1)
+
+            main_prog.print_general_stats(10, self.list_content2, self.counter_sms_sent1)
+            main_prog.print_general_stats(10, self.list_content2, self.counter_sms_sent2)
+
+            main_prog.print_general_stats(0, self.list_content1, self.counter_sms_sent2)
+            
+            main_prog.print_general_stats(10, self.list_content1, list(self.counter_sms_sent1))
+        except:
+            self.fail('print_general_stats raised an exception !')
 
 
 if __name__ == '__main__':
