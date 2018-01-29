@@ -1,7 +1,7 @@
-"""
+'''
     List of regular expressions that will be
     used to search for specific data in text
-"""
+'''
 # List of dates
 dates = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi",
          "dimanche", "janvier", "fevrier", "mars", "avril", "mai",

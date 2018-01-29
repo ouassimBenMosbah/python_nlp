@@ -6,7 +6,11 @@ import re
 import time
 
 def get_sms(XML_SMS):
-
+    '''
+        From an xml fil given in parameter, it returns a tuple containing:
+            - a list of sms (a tuple of (id, content))
+            - a list of phone number (string)
+    '''
     # Name of the file containing the messages
     fname = os.path.join(os.path.dirname(__file__), os.pardir, XML_SMS)
 
