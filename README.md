@@ -13,6 +13,12 @@ This program aim to help judicial experts to detect suspicious messages. It take
 > pip3 install -r requirements.txt
 ```
 
+## Usage
+
+```python
+> python3 main/main.py
+```
+
 ## Customization
 
 - In order to improve the antispam filter, you can add spams in `french_antispam/list_spams.txt` or add normal messages in `french_antispam/list_hams.txt`. Once it is done, you have to execute `python french_antispam/model_init.py` to save the new model.
