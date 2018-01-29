@@ -31,6 +31,11 @@ for x in ['il', 'je', 'tu', 'elle', 'nous', 'vous', 'on']:
 
 
 def preprocess_sms(list_sms):
+    '''
+        Take into parameter a lits of messages.
+        Return the same list of messages with 
+        a new suspicion rate and an objectivity rate
+    '''
     clean_sms = []
     cpt_spam = 0
     start = time.time()
