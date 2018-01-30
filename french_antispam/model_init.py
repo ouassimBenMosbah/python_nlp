@@ -1,12 +1,14 @@
 import antispam
+import os
 
-d = antispam.Detector("antispam_model.dat")
+CURRENT_FILE = os.path.dirname(__file__)
+d = antispam.Detector(os.path.join(CURRENT_FILE, 'antispam_model.dat'))
 
-with open('list_spams.txt') as f:
+with open(os.path.join(CURRENT_FILE, 'list_spams.txt')) as f:
     for spam in f:
         d.train(spam, True)
 
-with open('list_hams.txt') as f:
+with open(os.path.join(CURRENT_FILE, 'list_hams.txt')) as f:
     for ham in f:
         d.train(ham, False)
 
