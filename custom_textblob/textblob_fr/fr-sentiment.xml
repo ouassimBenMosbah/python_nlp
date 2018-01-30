@@ -1761,7 +1761,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="assassin" pos="*" polarity="-0.80" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="assassinat" pos="*" polarity="-0.80" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="attentat" pos="*" polarity="-1.00" subjectivity="0.00" intensity="1.0" confidence="1.0" />
-<word form="avou" pos="*" polarity="-0.70" subjectivity="0.00" intensity="1.0" confidence="1.0" />
+<word form="avou" pos="*" polarity="-0.30" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="batar" pos="*" polarity="-0.30" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="batard" pos="*" polarity="-0.30" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="beuh" pos="*" polarity="-0.90" subjectivity="0.00" intensity="1.0" confidence="1.0" />
