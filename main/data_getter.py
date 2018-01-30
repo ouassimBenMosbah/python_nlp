@@ -18,7 +18,7 @@ def get_sms(XML_SMS):
         corpus = f.read().split('</sms>')
 
     for sms in corpus:
-        sms = sms.replace('\n', '').replace('<3', '(coeur)').replace('&', 'et')
+        sms = sms.replace('\n', '').replace('<3', '♥').replace('&', 'et')
         match = re.search(r'<cont>.*<.*</cont>', sms)
         if match:
             sms = re.sub(r'<cont>(?P<a>.*)</cont>', '<cont>' +

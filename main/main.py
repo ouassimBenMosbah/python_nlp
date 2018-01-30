@@ -11,15 +11,14 @@ def main():
 
     print_general_stats(5, list_sms, sms_sent_to)
 
-    list_sms_content = text_preprocess.preprocess_sms(list_sms[:1000])
+    list_sms_content = text_preprocess.preprocess_sms(list_sms)
     list_sms_content = [(sms[-2], sms[-1], sms[0]) for sms in list_sms_content]
     ############################################################
 
     start = start2 = 0
 
     ############################################################
-    if not os.path.exists(RESULT_DIR):
-        os.makedirs(RESULT_DIR)
+    os.makedirs(RESULT_DIR)
     output_new_list_sms(list_sms_content, os.path.join(RESULT_DIR, 'new_sms.xml'))
     ############################################################
 
@@ -146,6 +145,7 @@ if __name__ == '__main__':
     import re
     import time
     import os
+    import shutil
     import sys
     from xml.etree.ElementTree import Element, SubElement, ElementTree
     import data_getter
@@ -169,4 +169,6 @@ if __name__ == '__main__':
         file_missing != file_missing
     
     if not file_missing:
+        if os.path.exists(RESULT_DIR):
+            shutil.rmtree(RESULT_DIR, ignore_errors=True)
         main()

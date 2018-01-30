@@ -189,7 +189,6 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="banal" pos="JJ" polarity="-0.30" subjectivity="0.50" intensity="1.0" confidence="0.9" />
 <word form="bancal" pos="JJ" polarity="-0.10" subjectivity="-0.20" intensity="1.0" confidence="0.7" />
 <word form="barbar" pos="JJ" polarity="-0.70" subjectivity="1.00" intensity="1.0" confidence="0.9" />
-<word form="bas" pos="JJ" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="basan" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.7" />
 <word form="bass" pos="JJ" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="batailleur" pos="JJ" polarity="-0.40" subjectivity="-0.80" intensity="1.0" confidence="0.7" />
@@ -448,7 +447,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="dantesqu" pos="JJ" polarity="-0.20" subjectivity="-0.40" intensity="1.0" confidence="0.7" />
 <word form="dem" pos="JJ" polarity="-0.05" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="dens" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.9" />
-<word form="derni" pos="JJ" polarity="-0.29" subjectivity="0.20" intensity="1.0" confidence="1.0" />
+<word form="derni" pos="JJ" polarity="-0.09" subjectivity="0.20" intensity="1.0" confidence="1.0" />
 <word form="deuxiem" pos="JJ" polarity="0.03" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="difficil" pos="JJ" polarity="-0.50" subjectivity="0.40" intensity="1.0" confidence="1.0" />
 <word form="difform" pos="JJ" polarity="-0.35" subjectivity="-0.70" intensity="1.0" confidence="0.7" />
@@ -527,7 +526,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="définit" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="déform" pos="JJ" polarity="-0.10" subjectivity="-0.20" intensity="1.0" confidence="0.7" />
 <word form="dégoût" pos="JJ" polarity="-0.43" subjectivity="-1.00" intensity="1.0" confidence="0.7" />
-<word form="dégueul" pos="JJ" polarity="-1.00" subjectivity="1.00" intensity="1.0" confidence="0.9" />
+<word form="dégueul" pos="JJ" polarity="-0.60" subjectivity="1.00" intensity="1.0" confidence="0.9" />
 <word form="délaiss" pos="JJ" polarity="-0.12" subjectivity="-0.20" intensity="1.0" confidence="0.7" />
 <word form="délect" pos="JJ" polarity="0.40" subjectivity="0.80" intensity="1.0" confidence="0.7" />
 <word form="délicat" pos="JJ" polarity="0.25" subjectivity="0.40" intensity="1.0" confidence="0.9" />
@@ -782,10 +781,10 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="grotesqu" pos="JJ" polarity="-0.60" subjectivity="0.70" intensity="1.0" confidence="0.9" />
 <word form="guerri" pos="JJ" polarity="-0.07" subjectivity="-0.13" intensity="1.0" confidence="0.7" />
 <word form="gé" pos="JJ" polarity="0.20" subjectivity="0.50" intensity="1.0" confidence="0.9" />
-<word form="génial" pos="JJ" polarity="0.90" subjectivity="1.00" intensity="1.0" confidence="0.9" />
+<word form="génial" pos="JJ" polarity="0.60" subjectivity="1.00" intensity="1.0" confidence="0.9" />
 <word form="général" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="géner" pos="JJ" polarity="0.70" subjectivity="0.60" intensity="1.0" confidence="0.8" />
-<word form="gên" pos="JJ" polarity="-0.40" subjectivity="0.80" intensity="1.0" confidence="0.9" />
+<word form="gên" pos="JJ" polarity="-0.20" subjectivity="0.80" intensity="1.0" confidence="0.9" />
 <word form="habil" pos="JJ" polarity="0.30" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="habill" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="habituel" pos="JJ" polarity="-0.05" subjectivity="0.00" intensity="1.0" confidence="0.9" />
@@ -812,7 +811,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="honteux" pos="JJ" polarity="-0.40" subjectivity="0.50" intensity="1.0" confidence="0.8" />
 <word form="horizontal" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="horreur" pos="NN" polarity="-0.50" subjectivity="0.20" intensity="1.0" confidence="0.9" />
-<word form="horribl" pos="JJ" polarity="-1.00" subjectivity="1.00" intensity="1.0" confidence="0.9" />
+<word form="horribl" pos="JJ" polarity="-0.70" subjectivity="1.00" intensity="1.0" confidence="0.9" />
 <word form="hostil" pos="JJ" polarity="-0.70" subjectivity="0.70" intensity="1.0" confidence="0.9" />
 <word form="humain" pos="JJ" polarity="0.22" subjectivity="0.10" intensity="1.0" confidence="1.0" />
 <word form="humanoïd" pos="JJ" polarity="0.11" subjectivity="0.22" intensity="1.0" confidence="0.7" />
@@ -841,7 +840,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="illégal" pos="JJ" polarity="-0.05" subjectivity="-0.10" intensity="1.0" confidence="0.7" />
 <word form="imaginair" pos="JJ" polarity="0.30" subjectivity="0.40" intensity="1.0" confidence="0.9" />
 <word form="imbib" pos="JJ" polarity="-0.02" subjectivity="-0.03" intensity="1.0" confidence="0.7" />
-<word form="imbécil" pos="JJ" polarity="-1.00" subjectivity="1.00" intensity="1.0" confidence="0.9" />
+<word form="imbécil" pos="JJ" polarity="-0.40" subjectivity="1.00" intensity="1.0" confidence="0.9" />
 <word form="immacul" pos="JJ" polarity="0.16" subjectivity="0.30" intensity="1.0" confidence="0.7" />
 <word form="immanqu" pos="JJ" polarity="-0.35" subjectivity="-0.70" intensity="1.0" confidence="0.7" />
 <word form="immens" pos="JJ" polarity="0.45" subjectivity="0.70" intensity="1.0" confidence="1.0" />
@@ -1101,7 +1100,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="mensonger" pos="JJ" polarity="-0.25" subjectivity="-0.50" intensity="1.0" confidence="0.7" />
 <word form="mental" pos="JJ" polarity="0.20" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="merc" pos="UH" polarity="0.30" subjectivity="0.20" intensity="1.0" confidence="0.9" />
-<word form="merd" pos="UH" polarity="-0.70" subjectivity="0.40" intensity="1.0" confidence="0.9" />
+<word form="merd" pos="UH" polarity="-0.40" subjectivity="0.40" intensity="1.0" confidence="0.9" />
 <word form="merveil" pos="NN" polarity="0.40" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="mesur" pos="JJ" polarity="-0.10" subjectivity="-0.20" intensity="1.0" confidence="0.7" />
 <word form="meurtri" pos="JJ" polarity="-0.60" subjectivity="0.50" intensity="1.0" confidence="0.9" />
@@ -1113,7 +1112,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="minuscul" pos="JJ" polarity="-0.22" subjectivity="0.30" intensity="1.0" confidence="1.0" />
 <word form="miracul" pos="JJ" polarity="0.20" subjectivity="1.00" intensity="1.0" confidence="0.8" />
 <word form="misogyn" pos="JJ" polarity="-0.60" subjectivity="0.00" intensity="1.0" confidence="0.8" />
-<word form="miser" pos="JJ" polarity="-1.00" subjectivity="0.90" intensity="1.0" confidence="0.9" />
+<word form="miser" pos="JJ" polarity="-0.30" subjectivity="0.90" intensity="1.0" confidence="0.9" />
 <word form="mobil" pos="JJ" polarity="0.10" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="moch" pos="JJ" polarity="-0.80" subjectivity="0.80" intensity="1.0" confidence="0.9" />
 <word form="modern" pos="JJ" polarity="0.20" subjectivity="0.10" intensity="1.0" confidence="0.9" />
@@ -1249,7 +1248,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="passéist" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.7" />
 <word form="patent" pos="JJ" polarity="0.10" subjectivity="0.20" intensity="1.0" confidence="0.7" />
 <word form="paternel" pos="JJ" polarity="-0.20" subjectivity="0.20" intensity="1.0" confidence="0.9" />
-<word form="pathet" pos="JJ" polarity="-1.00" subjectivity="1.00" intensity="1.0" confidence="0.9" />
+<word form="pathet" pos="JJ" polarity="-0.60" subjectivity="1.00" intensity="1.0" confidence="0.9" />
 <word form="patient" pos="JJ" polarity="0.00" subjectivity="0.10" intensity="1.0" confidence="0.9" />
 <word form="pauvr" pos="JJ" polarity="-0.37" subjectivity="0.20" intensity="1.0" confidence="1.0" />
 <word form="peinard" pos="JJ" polarity="0.40" subjectivity="0.80" intensity="1.0" confidence="0.7" />
@@ -1307,7 +1306,7 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="pos" pos="JJ" polarity="0.10" subjectivity="0.20" intensity="1.0" confidence="0.9" />
 <word form="poubel" pos="NN" polarity="-0.10" subjectivity="0.00" intensity="1.0" confidence="0.9" />
 <word form="pourpr" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.7" />
-<word form="pourr" pos="JJ" polarity="-0.80" subjectivity="0.80" intensity="1.0" confidence="0.9" />
+<word form="pourr" pos="JJ" polarity="-0.20" subjectivity="0.80" intensity="1.0" confidence="0.9" />
 <word form="poussier" pos="JJ" polarity="-0.20" subjectivity="0.40" intensity="1.0" confidence="0.8" />
 <word form="poétiqu" pos="JJ" polarity="0.20" subjectivity="0.80" intensity="1.0" confidence="0.9" />
 <word form="pratic" pos="JJ" polarity="0.00" subjectivity="0.00" intensity="1.0" confidence="0.7" />
@@ -1773,7 +1772,6 @@ For French book reviews, the accuracy is 75% (P 0.76, R 0.75, F1 0.75).
 <word form="chlag" pos="*" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="chlagu" pos="*" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="cok" pos="*" polarity="-0.80" subjectivity="0.00" intensity="1.0" confidence="1.0" />
-<word form="comm" pos="*" polarity="-0.50" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="conar" pos="*" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="conard" pos="*" polarity="-0.20" subjectivity="0.00" intensity="1.0" confidence="1.0" />
 <word form="cond" pos="*" polarity="-0.25" subjectivity="0.00" intensity="1.0" confidence="1.0" />

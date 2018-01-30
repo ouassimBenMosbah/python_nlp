@@ -27,9 +27,6 @@ for french_sms_word, french_sms_trad in zip(sms_dico.sms.sms_dico.split(
     dico_sms_fr.update({french_sms_word: french_sms_trad})
 
 stop_words = stopwords.words('french')
-for x in ['il', 'je', 'tu', 'elle', 'nous', 'vous', 'on']:
-    stop_words.remove(x)
-
 
 def preprocess_sms(list_sms):
     '''
@@ -48,7 +45,7 @@ def preprocess_sms(list_sms):
 
         if is_spam > 0.99:
             cpt_spam += 1
-            clean_sms.append([-1, 0, ID, sms])
+            clean_sms.append([1.0, 0, ID, sms])
         else:
             try:
                 sms_res = ''
