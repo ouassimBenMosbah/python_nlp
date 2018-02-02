@@ -15,6 +15,7 @@ You should first install python 3 :
 And then install pip :
 [pip installation](https://pip.pypa.io/en/stable/installing/)
 
+Then from the root directory of this repo run :
 ```python
 > pip install -r requirements.txt
 ```
