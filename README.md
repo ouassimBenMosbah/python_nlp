@@ -18,7 +18,7 @@ This program aim to help judicial experts to detect suspicious messages. It take
 ```python
 > python3 main/main.py
 ```
-A folder named `results` containing the results files will be created.
+A folder named `results` containing the results files will be created. It is recommended to open those xml files in your browser for a better visualization.
 
 ## Customization
 
