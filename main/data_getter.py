@@ -22,7 +22,7 @@ def get_sms(XML_SMS):
         match = re.search(r'<cont>.*<.*</cont>', sms)
         if match:
             sms = re.sub(r'<cont>(?P<a>.*)</cont>', '<cont>' +
-                         match.group()[6:-7].replace('<', ' ') + '</cont>', sms)
+                         match.group()[6:-7].replace('<', '&lt;') + '</cont>', sms)
         res += sms + '</sms>\n'
 
     with open(fname, 'w') as f:
