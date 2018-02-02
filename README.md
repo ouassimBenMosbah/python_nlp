@@ -9,10 +9,10 @@ This program aim to help judicial experts to detect suspicious messages. It take
 
 ## Installation
 
-You should first install python 3
+You should first install python 3 :
 [python 3 installation](https://www.python.org/downloads/)
 
-And then install pip
+And then install pip :
 [pip installation](https://pip.pypa.io/en/stable/installing/)
 
 ```python
