@@ -9,14 +9,20 @@ This program aim to help judicial experts to detect suspicious messages. It take
 
 ## Installation
 
+You should first install python 3
+[![python 3 installation]https://www.python.org/downloads/)]
+
+And then install pip
+[![pip installation](https://pip.pypa.io/en/stable/installing/)]
+
 ```python
-> pip3 install -r requirements.txt
+> pip install -r requirements.txt
 ```
 
 ## Usage
 
 ```python
-> python3 main/main.py
+> python main/main.py
 ```
 A folder named `results` containing the results files will be created. It is recommended to open those xml files in your browser for a better visualization.
 
