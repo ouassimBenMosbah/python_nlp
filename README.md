@@ -5,7 +5,7 @@ SMS Analysis: Natural Language Processing
 
 # Detection of suspicious messages.
 
-This program aim to help judicial experts to detect suspicious messages. It takes as a parameter an xml file containing all the messages and output a new xml file containing many messages sorted from the most suspicious message to the less suspicious one. Those suspicious messages are detected by using french natural language processing.
+This program aim to help judicial experts to detect suspicious messages. It takes as a parameter an xml file containing all the messages and output a new xml file containing those same messages sorted from the most suspicious message to the less suspicious one. Those suspicious messages are detected by using french natural language processing.
 
 ## Installation
 
